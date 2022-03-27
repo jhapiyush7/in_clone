@@ -30,19 +30,28 @@ function Widgets() {
       {data&&
         data.map((key)=>{
           return (
-            <>
-              <Card style={{boxShadow:'0',borderRadius:'0',border:'0'}}>
-                <CardContent style={{ padding: "10px"}}>
+            <div>
+              <Card style={{  borderRadius: "0", border: "0" }}>
+                <CardContent style={{ padding: "10px" }}>
                   <Typography variant="h7" component="div">
-                  {key.title}
+                    {key.title}
                   </Typography>
-                  <Typography variant="body2">{key.description}</Typography>
-                  <Link href={key.url} underline="none" target={"_blank"}>
+                  <Typography
+                    variant="body2"
+                    style={{fontSize: "12px", color: "gray" }}
+                  >
+                    {key.description}
+                  </Typography>
+                  <Link
+                    href={key.url}
+                    underline="none"
+                    target={"_blank"}
+                  >
                     Learn More
                   </Link>
                 </CardContent>
               </Card>
-            </>
+            </div>
           );
         })
       }

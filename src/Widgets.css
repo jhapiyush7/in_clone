@@ -6,7 +6,6 @@
     border-radius: 10px;
     border: 1px solid lightgray;
     height: fit-content;
-    padding-bottom: 10px;
 }
 .widgets__header{
     display: flex;
