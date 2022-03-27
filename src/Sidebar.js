@@ -35,8 +35,10 @@ const user=useSelector(selectUser);
       </div>
       <div className="sidebar__bottom">
         <p>Recent</p>
-        {recentItem("helelo")}
-        {recentItem("helllaoo")}
+        {recentItem("javaDevelopment")}
+        {recentItem("DFS/BFS")}
+        {recentItem("leetcode")}
+        {recentItem("useState")}
       </div>
     </div>
   );

@@ -31,10 +31,11 @@ function Feed() {
     const getPosts = async () => {
       const queryData=query(collection(db,"posts"),orderBy('createdAt','desc'));
       const data = await getDocs(queryData);
+      console.log(data);
       setPosts(data.docs.map((doc) => ({ ...doc.data(), id: doc.id ,data:doc.data()})));
     };
     getPosts();
-  });
+  },[]);
 
   const sendPost = async (e) => {
     e.preventDefault();

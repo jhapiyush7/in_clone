@@ -1,25 +1,51 @@
 import { FiberManualRecord, Info } from "@mui/icons-material";
-import React from "react";
+import Box from "@mui/material/Box";
+import Popper from "@mui/base/PopperUnstyled";
+import React, { useEffect, useState } from "react";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import Link from "@mui/material/Link";
+import CardContent from "@mui/material/CardContent";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 import "./Widgets.css";
 function Widgets() {
-  const newsArticle = (heading, subtitle) => (
-    <div className="widgets__article">
-      <div className="widgets__articleLeft">
-        <FiberManualRecord />
-      </div>
-      <div className="widgets__articleRight">
-        <h4>{heading}</h4>
-        <p>{subtitle}</p>
-      </div>
-    </div>
-  );
+  const[data,setData]=useState(null);
+  useEffect(()=>{
+    async function fetchdata(){
+      const res =await fetch(
+        "https://newsapi.org/v2/top-headlines?category=technology&country=us&pageSize=5&apiKey=5bb5bc9eb06243c89563949ea700388c"
+      );
+      const fullData=await res.json();
+      setData(fullData.articles);
+    }
+    fetchdata();
+  },[]);
+  
   return (
     <div className="widgets">
       <div className="widgets__header">
         <h2>LinkedIn News</h2>
-        <Info />
       </div>
-      {newsArticle("abcdddd", "fafafaa")}
+      {data&&
+        data.map((key)=>{
+          return (
+            <>
+              <Card style={{boxShadow:'0',borderRadius:'0',border:'0'}}>
+                <CardContent style={{ padding: "10px"}}>
+                  <Typography variant="h7" component="div">
+                  {key.title}
+                  </Typography>
+                  <Typography variant="body2">{key.description}</Typography>
+                  <Link href={key.url} underline="none" target={"_blank"}>
+                    Learn More
+                  </Link>
+                </CardContent>
+              </Card>
+            </>
+          );
+        })
+      }
     </div>
   );
 }
