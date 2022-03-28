@@ -35,7 +35,7 @@ function Feed() {
       setPosts(data.docs.map((doc) => ({ ...doc.data(), id: doc.id ,data:doc.data()})));
     };
     getPosts();
-  },[]);
+  });
 
   const sendPost = async (e) => {
     e.preventDefault();
@@ -72,7 +72,7 @@ function Feed() {
 
       {/* POSTS */}
       <FlipMove>
-        {posts && posts.map(({ id, data: { name, description, message, photoUrl } }) => (
+        {posts.map(({ id, data: { name, description, message, photoUrl } }) => (
           <Post
             key={id}
             name={name}
